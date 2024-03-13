@@ -9,11 +9,18 @@ int main() {
     linkedList.Append(5);
     linkedList.PrintList();
 
-    linkedList.Reverse();
-    linkedList.PrintList();
-
     std::cout << "Middle node: " << linkedList.GetMiddleNode()->GetValue() << "\n";
     std::cout << "2nd element from end: " << linkedList.FindKthFromEnd(2)->GetValue() << "\n";
     std::cout << "Has loop?: " << linkedList.HasLoop() << "\n";
+
+    std::cout << "\n  ================= REVERSED  ================= \n";
+    linkedList.Reverse();
+    linkedList.PrintList();
+
+    constexpr int x = 3;
+
+    std::cout << "\n ================= PARTITIONED LL AROUND "  << x << "  ================= \n";
+    linkedList.PartitionList(x);
+    linkedList.PrintList();
 
 }

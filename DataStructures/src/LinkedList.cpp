@@ -232,19 +232,51 @@ const bool LinkedList::HasLoop() const
     return false;
 }
 
+void LinkedList::PartitionList(const int x){
+
+    if (!head) return;
+
+    Node lhead(0);
+    Node rhead(0);
+
+    Node* ltail = &lhead;
+    Node* rtail = &rhead;
+
+    Node* currentNode = head;
+    while (currentNode) {
+
+        if (currentNode->GetValue() < x) {
+            ltail->SetNext(currentNode);
+            ltail = currentNode;
+        }
+        else {
+            rtail->SetNext(currentNode);
+            rtail = currentNode;
+        }
+
+        currentNode = currentNode->GetNext();
+    }
+
+    rtail->SetNext(nullptr);
+    ltail->SetNext(rhead.GetNext());
+
+    head = lhead.GetNext();
+
+}
+
 void LinkedList::PrintList() const
 {
     const std::string headValue = head ? std::to_string(head->GetValue()) : "nullptr";
     const std::string tailValue = tail ? std::to_string(tail->GetValue()) : "nullptr";
 
-    std::cout << "\nLinked List:\n"
-        << "Head: " << headValue << "\n"
-        << "Tail: " << tailValue << "\n"
-        << "Length: " << length << "\n";
+    std::cout << "\nLinked List:\n\n"
+        << "\tHead: " << headValue << "\n"
+        << "\tTail: " << tailValue << "\n"
+        << "\tLength: " << length << "\n\n";
 
     const Node* currentNode = head;
     while (currentNode) {
-        std::cout << currentNode->GetValue() << "\n";
+        std::cout << "\t" << currentNode->GetValue() << "\n";
         currentNode = currentNode->GetNext();
     }
 
