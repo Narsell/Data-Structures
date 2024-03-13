@@ -192,6 +192,46 @@ const Node* LinkedList::GetMiddleNode() const
     return slowNode;
 }
 
+const Node* LinkedList::FindKthFromEnd(const int k) const
+{
+    Node* slow = head;
+    Node* fast = head;
+
+    for (int i = 0; i < k; ++i) {
+        if (!fast) {
+            return nullptr;
+        }
+        fast = fast->GetNext();
+    }
+
+    while (fast) {
+        slow = slow->GetNext();
+        fast = fast->GetNext();
+    }
+
+    return slow;
+}
+
+const bool LinkedList::HasLoop() const
+{
+    if (!head) {
+        return false;
+    }
+    Node* slowNode = head;
+    Node* fastNode = head;
+
+    while (fastNode && fastNode->GetNext()) {
+        slowNode = slowNode->GetNext();
+        fastNode = fastNode->GetNext()->GetNext();
+
+        if (slowNode == fastNode) {
+            return true;
+        }
+
+    }
+    return false;
+}
+
 void LinkedList::PrintList() const
 {
     const std::string headValue = head ? std::to_string(head->GetValue()) : "nullptr";

@@ -12,6 +12,8 @@ int main() {
     linkedList.Reverse();
     linkedList.PrintList();
 
-    std::cout << "Middle node: " << linkedList.GetMiddleNode()->GetValue() << std::endl;
+    std::cout << "Middle node: " << linkedList.GetMiddleNode()->GetValue() << "\n";
+    std::cout << "2nd element from end: " << linkedList.FindKthFromEnd(2)->GetValue() << "\n";
+    std::cout << "Has loop?: " << linkedList.HasLoop() << "\n";
 
 }
