@@ -34,10 +34,15 @@ public:
 
     ~LinkedList();
 
+    // O(n) time complexity.
     Node* Get(const int index);
+    // O(n) time complexity.
     const bool Set(const int index, const int value);
+    // O(n) time complexity.
     const bool Insert(const int index, const int value);
+    // O(1) time complexity.
     void Prepend(const int value);
+    // O(n) time complexity.
     void Append(const int value);
     void DeleteNode(const int index);
     void DeleteLast();
@@ -47,8 +52,17 @@ public:
     const Node* GetHead() const { return head; };
     const Node* GetTail() const { return tail; };
     const int GetLength() const { return length; };
-    const Node* GetMiddleNode() const;
     void PrintList() const;
+
+    /* LEETCODE EXERCISES */
+
+    // O(n) time complexity. Using the "tortoise and hare" technique.
+    const Node* GetMiddleNode() const;
+    // O(n) time complexity. Using the "tortoise and hare" technique.
+    const Node* FindKthFromEnd(const int k) const;
+    // O(n) time complexity. Using the "tortoise and hare" technique.
+    const bool HasLoop() const;
+    
 
 private:
 
