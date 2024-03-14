@@ -12,11 +12,11 @@ public:
     {
     }
 
-    const int GetValue() const { return value; };
-    Node* GetNext() const { return next; };
+    //const int GetValue() const { return value; };
+    //Node* GetNext() const { return next; };
 
-    void SetValue(const int newValue) { value = newValue; };
-    void SetNext( Node* newNext) { next = newNext; };
+    //void SetValue(const int newValue) { value = newValue; };
+    //void SetNext( Node* newNext) { next = newNext; };
 
     int value;
     Node* next;

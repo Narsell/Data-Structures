@@ -12,7 +12,7 @@ LinkedList::~LinkedList()
 {
     const Node* currentNode = head;
     while (head) {
-        head = head->GetNext();
+        head = head->next;
         delete currentNode;
         currentNode = head;
     }
@@ -30,7 +30,7 @@ Node* LinkedList::Get(const int index)
             return currentNode;
         }
         ++currentIndex;
-        currentNode = currentNode->GetNext();
+        currentNode = currentNode->next;
     }
 }
 
@@ -39,7 +39,7 @@ const bool LinkedList::Set(const int index, const int value)
     Node* node = Get(index);
     
     if (node) {
-        node->SetValue(value);
+        node->value = value;
         return true;
     }
     return false;
@@ -60,8 +60,8 @@ const bool LinkedList::Insert(const int index, const int value)
         Node* newNode = new Node(value);
         Node* nodeBefore = Get(index - 1);
 
-        newNode->SetNext(nodeBefore->GetNext());
-        nodeBefore->SetNext(newNode);
+        newNode->next = nodeBefore->next;
+        nodeBefore->next = newNode;
         ++length;
     }
     return true;
@@ -76,7 +76,7 @@ void LinkedList::Prepend(const int value)
         tail = newNode;
     }
     else {
-        newNode->SetNext(head);
+        newNode->next = head;
         head = newNode;
     }
     ++length;
@@ -86,7 +86,7 @@ void LinkedList::Append(const int value)
 {
     Node* newNode = new Node(value);
     if (length > 0) {
-        tail->SetNext(newNode);
+        tail->next = newNode;
         tail = newNode;
     }
     else {
@@ -103,9 +103,9 @@ void LinkedList::DeleteNode(const int index)
     else if (index == length - 1) return DeleteLast();
  
     Node* nodeBefore = Get(index - 1);
-    Node* node = nodeBefore->GetNext();
+    Node* node = nodeBefore->next;
  
-    nodeBefore->SetNext(node->GetNext());
+    nodeBefore->next = node->next;
     delete node;
     --length;
 }
@@ -121,16 +121,16 @@ void LinkedList::DeleteLast()
     }
     else {
         Node* currentNode = head;
-        while (currentNode->GetNext())
+        while (currentNode->next)
         {
-            if (currentNode->GetNext() == tail)
+            if (currentNode->next == tail)
             {
                 delete tail;
                 tail = currentNode;
-                currentNode->SetNext(nullptr);
+                currentNode->next = nullptr;
                 break;
             }
-            currentNode = currentNode->GetNext();
+            currentNode = currentNode->next;
 
         }
         --length;
@@ -148,7 +148,7 @@ void LinkedList::DeleteFirst()
         tail = nullptr;
     }
     else {
-        head = head->GetNext();
+        head = head->next;
     }
     delete headBeforeDelete;
     --length;
@@ -168,10 +168,10 @@ void LinkedList::Reverse()
     Node* nodeBefore = nullptr;
     while (currentNode) {
         Node origCurrentNode = *currentNode;
-        currentNode->SetNext(nodeBefore);
+        currentNode->next = nodeBefore;
 
         nodeBefore = currentNode;
-        currentNode = origCurrentNode.GetNext();
+        currentNode = origCurrentNode.next;
     }
 
 }
@@ -185,8 +185,8 @@ const Node* LinkedList::GetMiddleNode() const
     Node* fastNode = head;
 
     while (fastNode && fastNode != tail) {
-        slowNode = slowNode->GetNext();
-        fastNode = fastNode->GetNext()->GetNext();
+        slowNode = slowNode->next;
+        fastNode = fastNode->next->next;
     }
 
     return slowNode;
@@ -201,12 +201,12 @@ const Node* LinkedList::FindKthFromEnd(const int k) const
         if (!fast) {
             return nullptr;
         }
-        fast = fast->GetNext();
+        fast = fast->next;
     }
 
     while (fast) {
-        slow = slow->GetNext();
-        fast = fast->GetNext();
+        slow = slow->next;
+        fast = fast->next;
     }
 
     return slow;
@@ -220,9 +220,9 @@ const bool LinkedList::HasLoop() const
     Node* slowNode = head;
     Node* fastNode = head;
 
-    while (fastNode && fastNode->GetNext()) {
-        slowNode = slowNode->GetNext();
-        fastNode = fastNode->GetNext()->GetNext();
+    while (fastNode && fastNode->next) {
+        slowNode = slowNode->next;
+        fastNode = fastNode->next->next;
 
         if (slowNode == fastNode) {
             return true;
@@ -245,22 +245,22 @@ void LinkedList::PartitionList(const int x){
     Node* currentNode = head;
     while (currentNode) {
 
-        if (currentNode->GetValue() < x) {
-            ltail->SetNext(currentNode);
+        if (currentNode->value < x) {
+            ltail->next = currentNode;
             ltail = currentNode;
         }
         else {
-            rtail->SetNext(currentNode);
+            rtail->next = currentNode;
             rtail = currentNode;
         }
 
-        currentNode = currentNode->GetNext();
+        currentNode = currentNode->next;
     }
 
-    rtail->SetNext(nullptr);
-    ltail->SetNext(rhead.GetNext());
+    rtail->next = nullptr;
+    ltail->next = rhead.next;
 
-    head = lhead.GetNext();
+    head = lhead.next;
     tail = rtail;
 
 }
@@ -273,25 +273,25 @@ void LinkedList::RemoveDuplicates() {
     Node* prev_runner = current;
 
     while (current) {
-        runner = current->GetNext();
+        runner = current->next;
         prev_runner = current;
 
         while (runner) {
-            if (runner->GetValue() == current->GetValue()) {
-                prev_runner->SetNext(runner->GetNext());
+            if (runner->value == current->value) {
+                prev_runner->next = runner->next;
                 --length;
                 delete runner;
-                runner = prev_runner->GetNext();
+                runner = prev_runner->next;
             }
             else {
-                runner = runner->GetNext();
-                prev_runner = prev_runner->GetNext();
+                runner = runner->next;
+                prev_runner = prev_runner->next;
             }
         }
-        if (!current->GetNext()) {
+        if (!current->next) {
             tail = current;
         }
-        current = current->GetNext();
+        current = current->next;
     }
 }
 
@@ -301,8 +301,8 @@ void LinkedList::RemoveDuplicatesUsingSet()
 
 void LinkedList::PrintList() const
 {
-    const std::string headValue = head ? std::to_string(head->GetValue()) : "nullptr";
-    const std::string tailValue = tail ? std::to_string(tail->GetValue()) : "nullptr";
+    const std::string headValue = head ? std::to_string(head->value) : "nullptr";
+    const std::string tailValue = tail ? std::to_string(tail->value) : "nullptr";
 
     std::cout << "\nLinked List:\n\n"
         << "\tHead: " << headValue << "\n"
@@ -311,8 +311,8 @@ void LinkedList::PrintList() const
 
     const Node* currentNode = head;
     while (currentNode) {
-        std::cout << "\t" << currentNode->GetValue() << "\n";
-        currentNode = currentNode->GetNext();
+        std::cout << "\t" << currentNode->value << "\n";
+        currentNode = currentNode->next;
     }
 
 }
