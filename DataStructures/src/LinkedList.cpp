@@ -261,7 +261,42 @@ void LinkedList::PartitionList(const int x){
     ltail->SetNext(rhead.GetNext());
 
     head = lhead.GetNext();
+    tail = rtail;
 
+}
+
+void LinkedList::RemoveDuplicates() {
+    if (!head) return;
+
+    Node* current = head;
+    Node* runner = current;
+    Node* prev_runner = current;
+
+    while (current) {
+        runner = current->GetNext();
+        prev_runner = current;
+
+        while (runner) {
+            if (runner->GetValue() == current->GetValue()) {
+                prev_runner->SetNext(runner->GetNext());
+                --length;
+                delete runner;
+                runner = prev_runner->GetNext();
+            }
+            else {
+                runner = runner->GetNext();
+                prev_runner = prev_runner->GetNext();
+            }
+        }
+        if (!current->GetNext()) {
+            tail = current;
+        }
+        current = current->GetNext();
+    }
+}
+
+void LinkedList::RemoveDuplicatesUsingSet()
+{
 }
 
 void LinkedList::PrintList() const

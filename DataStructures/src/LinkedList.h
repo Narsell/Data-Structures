@@ -7,21 +7,19 @@ class Node {
 public:
 
     Node(const int value)
-        :m_value(value),
-        m_next(nullptr)
+        :value(value),
+        next(nullptr)
     {
     }
 
-    const int GetValue() const { return m_value; };
-    Node* GetNext() const { return m_next; };
+    const int GetValue() const { return value; };
+    Node* GetNext() const { return next; };
 
-    void SetValue(const int value) { m_value = value; };
-    void SetNext( Node* next) { m_next = next; };
+    void SetValue(const int newValue) { value = newValue; };
+    void SetNext( Node* newNext) { next = newNext; };
 
-private:
-
-    int m_value;
-    Node* m_next;
+    int value;
+    Node* next;
 
 };
 
@@ -70,6 +68,10 @@ public:
     const bool HasLoop() const;
     // O(n) time complexity. Partitions the list around x.
     void PartitionList(const int x);
+    // O(n^2) time complexity. Removes duplicates using a runner pointer.
+    void RemoveDuplicates();
+    // O(n) time complexity. Removes duplicates using an std::unordered_set
+    void RemoveDuplicatesUsingSet();
     
 
 private:
