@@ -1,3 +1,5 @@
+#include <unordered_set>
+
 #include "LinkedList.h"
 
 LinkedList::LinkedList(const int value)
@@ -297,6 +299,31 @@ void LinkedList::RemoveDuplicates() {
 
 void LinkedList::RemoveDuplicatesUsingSet()
 {
+    if (!head) return;
+
+    std::unordered_set<int> values;
+
+    Node* current = head;
+    Node* previous = nullptr;
+
+    while (current) {
+
+        if (values.find(current->value) != values.end()) {
+            const Node* duplicate = current;
+            previous->next = current->next;
+            delete current;
+            current = previous->next;
+            --length;
+        }
+        else {
+            values.insert(current->value);
+            previous = current;
+            current = current->next;
+        }
+        if (!current) {
+            tail = previous;
+        }
+    }
 }
 
 void LinkedList::PrintList() const
