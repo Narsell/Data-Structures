@@ -326,6 +326,62 @@ void LinkedList::RemoveDuplicatesUsingSet()
     }
 }
 
+void LinkedList::ReverseBetween(int m, int n)
+{
+    if (!head || m == n || m < 0 || m > length - 1 || n > length - 1) return;
+
+    Node* sublistHead = new Node(0);
+    sublistHead->next = head;
+    Node* sublistTail = sublistHead->next;
+
+    Node* leftEdge = head;
+    Node* rightEdge = nullptr;
+
+    //Iterate through LL and find sublist and edges of original list.
+    Node* currentNode = head;
+    int index = 0;
+    while (currentNode) {
+        if (index + 1 == m) {
+            leftEdge = currentNode;
+            sublistHead->next = currentNode->next;
+        }
+        else if (index == n) {
+            rightEdge = currentNode->next;
+            sublistTail = currentNode;
+        }
+
+        ++index;
+        currentNode = currentNode->next;
+    }
+
+    //Reverse sublist.
+    Node* sublistNode = sublistHead->next;
+    Node* previous = nullptr;
+    while (sublistNode && previous != sublistTail) {
+        Node* nextNode = sublistNode->next;
+
+        sublistNode->next = previous;
+
+        previous = sublistNode;
+        sublistNode = nextNode;
+    }
+
+    Node* tempSublistHead = sublistHead->next;
+    sublistHead->next = sublistTail;
+    sublistTail = tempSublistHead;
+
+    //Attatch reversed sublist to original list appropriately 
+    if (sublistTail == head) {
+        head = sublistHead->next;
+    }
+    else {
+        leftEdge->next = sublistHead->next;
+    }
+
+    sublistTail->next = rightEdge;
+    
+}
+
 void LinkedList::PrintList() const
 {
     const std::string headValue = head ? std::to_string(head->value) : "nullptr";

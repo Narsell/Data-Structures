@@ -41,7 +41,7 @@ public:
     const bool Insert(const int index, const int value);
     // O(1) time complexity. Adds a node to the begining.
     void Prepend(const int value);
-    // O(n) time complexity. Adds a node to the end.
+    // O(1) time complexity. Adds a node to the end.
     void Append(const int value);
     // O(n) time complexity. Deletes a node at a given index.
     void DeleteNode(const int index);
@@ -66,6 +66,8 @@ public:
     void RemoveDuplicates();
     // O(n) time complexity. Removes duplicates using an std::unordered_set
     void RemoveDuplicatesUsingSet();
+    // O(n) time complexity. Reverses a sublist between m and n.
+    void ReverseBetween(int m, int n);
     
 
 private:
