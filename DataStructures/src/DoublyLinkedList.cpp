@@ -5,7 +5,7 @@
 
 DoublyLinkedList::DoublyLinkedList(const int value)
 {
-	Node* newNode = new Node(value);
+	DLLNode* newNode = new DLLNode(value);
 	head = newNode;
 	tail = newNode;
 	length = 1;
@@ -13,7 +13,7 @@ DoublyLinkedList::DoublyLinkedList(const int value)
 
 DoublyLinkedList::~DoublyLinkedList()
 {
-	const Node* currentNode = head;
+	const DLLNode* currentNode = head;
 	while (head) {
 		head = head->next;
 		delete currentNode;
@@ -26,12 +26,12 @@ void DoublyLinkedList::PrintList() const
 	const std::string headValue = head ? std::to_string(head->value) : "nullptr";
 	const std::string tailValue = tail ? std::to_string(tail->value) : "nullptr";
 
-	std::cout << "\nDoubly Linked List:\n\n"
+	std::cout << "\n\tDoubly Linked List:\n\n"
 		<< "\tHead: " << headValue << "\n"
 		<< "\tTail: " << tailValue << "\n"
 		<< "\tLength: " << length << "\n\n";
 
-	const Node* currentNode = head;
+	const DLLNode* currentNode = head;
 	while (currentNode) {
 		std::cout << "\t" << currentNode->value << "\n";
 		currentNode = currentNode->next;
@@ -39,9 +39,24 @@ void DoublyLinkedList::PrintList() const
 
 }
 
+const DLLNode* DoublyLinkedList::Get(const int index)
+{
+	if (!head || index >= length || index < 0) return nullptr;
+
+	const bool closerToHead = index <= (length - 1)/ 2;
+	const DLLNode* currentNode = closerToHead ? head : tail;
+	const int finalIndex = closerToHead ? index : length - 1 - index;
+
+	for (int i = 0; i < finalIndex; ++i) {
+		currentNode = closerToHead ? currentNode->next : currentNode->prev;
+	}
+
+	return currentNode;
+}
+
 void DoublyLinkedList::Append(const int value)
 {
-	Node* newNode = new Node(value);
+	DLLNode* newNode = new DLLNode(value);
 
 	if (!head) {
 		head = newNode;
@@ -57,7 +72,7 @@ void DoublyLinkedList::Append(const int value)
 
 void DoublyLinkedList::Prepend(const int value)
 {
-	Node* newNode = new Node(value);
+	DLLNode* newNode = new DLLNode(value);
 	if (!head) {
 		head = newNode;
 		tail = newNode;
@@ -74,7 +89,7 @@ void DoublyLinkedList::DeleteLast()
 {
 	if (!head) return;
 
-	Node* lastNode = tail;
+	const DLLNode* lastNode = tail;
 
 	if (head == tail) {
 		head = nullptr;
@@ -86,4 +101,20 @@ void DoublyLinkedList::DeleteLast()
 	}
 	delete lastNode;
 	--length;
+}
+
+void DoublyLinkedList::DeleteFirst()
+{
+	if (!head) return;
+	const DLLNode* headToDelete = head;
+	if (head == tail) {
+		head = nullptr;
+		tail = nullptr;
+	}
+	else {
+		head = head->next;
+		head->prev = nullptr;
+	}
+	--length;
+	delete headToDelete;
 }

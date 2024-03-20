@@ -1,19 +1,16 @@
-#include <iostream>
-#include <sstream>
 
-
-class Node {
+class LLNode {
 
 public:
 
-    Node(const int value)
+    LLNode(const int value)
         :value(value),
         next(nullptr)
     {
     }
 
     int value;
-    Node* next;
+    LLNode* next;
 
 };
 
@@ -26,15 +23,15 @@ public:
 
     ~LinkedList();
 
-    const Node* GetHead() const { return head; };
-    const Node* GetTail() const { return tail; };
+    const LLNode* GetHead() const { return head; };
+    const LLNode* GetTail() const { return tail; };
     const int GetLength() const { return length; };
     void PrintList() const;
 
     /* BASIC OPERATIONS */
 
     // O(n) time complexity. Retrieves a node.
-    Node* Get(const int index);
+    LLNode* Get(const int index);
     // O(n) time complexity. Sets the value of a node at a given index.
     const bool Set(const int index, const int value);
     // O(n) time complexity. Inserts a node at a given index.
@@ -55,9 +52,9 @@ public:
     /* LEETCODE EXERCISES */
 
     // O(n) time complexity. Using the "tortoise and hare" technique.
-    const Node* GetMiddleNode() const;
+    const LLNode* GetMiddleNode() const;
     // O(n) time complexity. Using the "tortoise and hare" technique.
-    const Node* FindKthFromEnd(const int k) const;
+    const LLNode* FindKthFromEnd(const int k) const;
     // O(n) time complexity. Using the "tortoise and hare" technique.
     const bool HasLoop() const;
     // O(n) time complexity. Partitions the list around x.
@@ -72,8 +69,8 @@ public:
 
 private:
 
-    Node* head;
-    Node* tail;
+    LLNode* head;
+    LLNode* tail;
     int length;
 
 };

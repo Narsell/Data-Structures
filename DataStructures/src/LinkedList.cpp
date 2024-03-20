@@ -1,18 +1,20 @@
 #include <unordered_set>
+#include <sstream>
+#include <iostream>
 
 #include "LinkedList.h"
 
 LinkedList::LinkedList(const int value)
     :length(1)
 {
-    Node* newNode = new Node(value);
+    LLNode* newNode = new LLNode(value);
     head = newNode;
     tail = newNode;
 }
 
 LinkedList::~LinkedList()
 {
-    const Node* currentNode = head;
+    const LLNode* currentNode = head;
     while (head) {
         head = head->next;
         delete currentNode;
@@ -20,12 +22,12 @@ LinkedList::~LinkedList()
     }
 }
 
-Node* LinkedList::Get(const int index)
+LLNode* LinkedList::Get(const int index)
 {
     if (index < 0 || index >= length) {
         return nullptr;
     }
-    Node* currentNode = head;
+    LLNode* currentNode = head;
     int currentIndex = 0;
     while (head) {
         if (currentIndex == index) {
@@ -38,7 +40,7 @@ Node* LinkedList::Get(const int index)
 
 const bool LinkedList::Set(const int index, const int value)
 {
-    Node* node = Get(index);
+    LLNode* node = Get(index);
     
     if (node) {
         node->value = value;
@@ -59,8 +61,8 @@ const bool LinkedList::Insert(const int index, const int value)
         Append(value);
     }
     else {
-        Node* newNode = new Node(value);
-        Node* nodeBefore = Get(index - 1);
+        LLNode* newNode = new LLNode(value);
+        LLNode* nodeBefore = Get(index - 1);
 
         newNode->next = nodeBefore->next;
         nodeBefore->next = newNode;
@@ -72,7 +74,7 @@ const bool LinkedList::Insert(const int index, const int value)
 
 void LinkedList::Prepend(const int value)
 {
-    Node* newNode = new Node(value);
+    LLNode* newNode = new LLNode(value);
     if (length == 0) {
         head = newNode;
         tail = newNode;
@@ -86,7 +88,7 @@ void LinkedList::Prepend(const int value)
 
 void LinkedList::Append(const int value)
 {
-    Node* newNode = new Node(value);
+    LLNode* newNode = new LLNode(value);
     if (length > 0) {
         tail->next = newNode;
         tail = newNode;
@@ -104,8 +106,8 @@ void LinkedList::DeleteNode(const int index)
     if (index == 0) return DeleteFirst();
     else if (index == length - 1) return DeleteLast();
  
-    Node* nodeBefore = Get(index - 1);
-    Node* node = nodeBefore->next;
+    LLNode* nodeBefore = Get(index - 1);
+    LLNode* node = nodeBefore->next;
  
     nodeBefore->next = node->next;
     delete node;
@@ -122,7 +124,7 @@ void LinkedList::DeleteLast()
         length = 0;
     }
     else {
-        Node* currentNode = head;
+        LLNode* currentNode = head;
         while (currentNode->next)
         {
             if (currentNode->next == tail)
@@ -143,7 +145,7 @@ void LinkedList::DeleteFirst()
 {
     if (length == 0) return;
 
-    const Node* headBeforeDelete = head;
+    const LLNode* headBeforeDelete = head;
 
     if (length == 1) {
         head = nullptr;
@@ -162,14 +164,14 @@ void LinkedList::Reverse()
         return;
     }
 
-    Node* tempHead = head;
+    LLNode* tempHead = head;
     head = tail;
     tail = tempHead;
 
-    Node* currentNode = tail;
-    Node* nodeBefore = nullptr;
+    LLNode* currentNode = tail;
+    LLNode* nodeBefore = nullptr;
     while (currentNode) {
-        Node origCurrentNode = *currentNode;
+        LLNode origCurrentNode = *currentNode;
         currentNode->next = nodeBefore;
 
         nodeBefore = currentNode;
@@ -178,13 +180,13 @@ void LinkedList::Reverse()
 
 }
 
-const Node* LinkedList::GetMiddleNode() const
+const LLNode* LinkedList::GetMiddleNode() const
 {
     if (!head) {
         return nullptr;
     }
-    Node* slowNode = head;
-    Node* fastNode = head;
+    LLNode* slowNode = head;
+    LLNode* fastNode = head;
 
     while (fastNode && fastNode != tail) {
         slowNode = slowNode->next;
@@ -194,10 +196,10 @@ const Node* LinkedList::GetMiddleNode() const
     return slowNode;
 }
 
-const Node* LinkedList::FindKthFromEnd(const int k) const
+const LLNode* LinkedList::FindKthFromEnd(const int k) const
 {
-    Node* slow = head;
-    Node* fast = head;
+    LLNode* slow = head;
+    LLNode* fast = head;
 
     for (int i = 0; i < k; ++i) {
         if (!fast) {
@@ -219,8 +221,8 @@ const bool LinkedList::HasLoop() const
     if (!head) {
         return false;
     }
-    Node* slowNode = head;
-    Node* fastNode = head;
+    LLNode* slowNode = head;
+    LLNode* fastNode = head;
 
     while (fastNode && fastNode->next) {
         slowNode = slowNode->next;
@@ -238,13 +240,13 @@ void LinkedList::PartitionList(const int x){
 
     if (!head) return;
 
-    Node lhead(0);
-    Node rhead(0);
+    LLNode lhead(0);
+    LLNode rhead(0);
 
-    Node* ltail = &lhead;
-    Node* rtail = &rhead;
+    LLNode* ltail = &lhead;
+    LLNode* rtail = &rhead;
 
-    Node* currentNode = head;
+    LLNode* currentNode = head;
     while (currentNode) {
 
         if (currentNode->value < x) {
@@ -270,9 +272,9 @@ void LinkedList::PartitionList(const int x){
 void LinkedList::RemoveDuplicates() {
     if (!head) return;
 
-    Node* current = head;
-    Node* runner = current;
-    Node* prev_runner = current;
+    LLNode* current = head;
+    LLNode* runner = current;
+    LLNode* prev_runner = current;
 
     while (current) {
         runner = current->next;
@@ -303,13 +305,13 @@ void LinkedList::RemoveDuplicatesUsingSet()
 
     std::unordered_set<int> values;
 
-    Node* current = head;
-    Node* previous = nullptr;
+    LLNode* current = head;
+    LLNode* previous = nullptr;
 
     while (current) {
 
         if (values.find(current->value) != values.end()) {
-            const Node* duplicate = current;
+            const LLNode* duplicate = current;
             previous->next = current->next;
             delete current;
             current = previous->next;
@@ -330,15 +332,15 @@ void LinkedList::ReverseBetween(int m, int n)
 {
     if (!head || m == n || m < 0 || m > length - 1 || n > length - 1) return;
 
-    Node* sublistHead = new Node(0);
+    LLNode* sublistHead = new LLNode(0);
     sublistHead->next = head;
-    Node* sublistTail = sublistHead->next;
+    LLNode* sublistTail = sublistHead->next;
 
-    Node* leftEdge = head;
-    Node* rightEdge = nullptr;
+    LLNode* leftEdge = head;
+    LLNode* rightEdge = nullptr;
 
     //Iterate through LL and find sublist and edges of original list.
-    Node* currentNode = head;
+    LLNode* currentNode = head;
     int index = 0;
     while (currentNode) {
         if (index + 1 == m) {
@@ -355,10 +357,10 @@ void LinkedList::ReverseBetween(int m, int n)
     }
 
     //Reverse sublist.
-    Node* sublistNode = sublistHead->next;
-    Node* previous = nullptr;
+    LLNode* sublistNode = sublistHead->next;
+    LLNode* previous = nullptr;
     while (sublistNode && previous != sublistTail) {
-        Node* nextNode = sublistNode->next;
+        LLNode* nextNode = sublistNode->next;
 
         sublistNode->next = previous;
 
@@ -366,7 +368,7 @@ void LinkedList::ReverseBetween(int m, int n)
         sublistNode = nextNode;
     }
 
-    Node* tempSublistHead = sublistHead->next;
+    LLNode* tempSublistHead = sublistHead->next;
     sublistHead->next = sublistTail;
     sublistTail = tempSublistHead;
 
@@ -387,12 +389,12 @@ void LinkedList::PrintList() const
     const std::string headValue = head ? std::to_string(head->value) : "nullptr";
     const std::string tailValue = tail ? std::to_string(tail->value) : "nullptr";
 
-    std::cout << "\nLinked List:\n\n"
+    std::cout << "\n\tLinked List:\n\n"
         << "\tHead: " << headValue << "\n"
         << "\tTail: " << tailValue << "\n"
         << "\tLength: " << length << "\n\n";
 
-    const Node* currentNode = head;
+    const LLNode* currentNode = head;
     while (currentNode) {
         std::cout << "\t" << currentNode->value << "\n";
         currentNode = currentNode->next;
