@@ -31,7 +31,7 @@ public:
     /* BASIC OPERATIONS */
 
     // O(n) time complexity. Retrieves a node.
-    LLNode* Get(const int index);
+    LLNode* Get(const int index) const;
     // O(n) time complexity. Sets the value of a node at a given index.
     const bool Set(const int index, const int value);
     // O(n) time complexity. Inserts a node at a given index.

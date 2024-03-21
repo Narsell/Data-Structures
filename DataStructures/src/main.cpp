@@ -46,6 +46,8 @@ int main() {
     doublyLL.Append(6);
     doublyLL.Append(7);
 
+    doublyLL.Insert(7, 99);
+
     doublyLL.PrintList();
 
 }

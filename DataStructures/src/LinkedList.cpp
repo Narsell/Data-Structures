@@ -22,7 +22,7 @@ LinkedList::~LinkedList()
     }
 }
 
-LLNode* LinkedList::Get(const int index)
+LLNode* LinkedList::Get(const int index) const
 {
     if (index < 0 || index >= length) {
         return nullptr;

@@ -32,7 +32,11 @@ public:
     /* BASIC OPERATIONS */
 
     // O(n) time complexity (with DLL optimization). Gets the node at the given index.
-    const DLLNode* Get(const int index);
+    DLLNode* Get(const int index) const;
+    // O(n) time complexity (with DLL optimization). Sets the value of a node at a given index.
+    const bool Set(const int index, const int value);
+    // O(n) time complexity. Inserts a new node at the given index.
+    const bool Insert(const int index, const int value);
     // O(1) time complexity. Adds a node to the end.
     void Append(const int value);
     // O(1) time complexity. Adds a new node to the begining.

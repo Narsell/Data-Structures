@@ -39,12 +39,12 @@ void DoublyLinkedList::PrintList() const
 
 }
 
-const DLLNode* DoublyLinkedList::Get(const int index)
+DLLNode* DoublyLinkedList::Get(const int index) const
 {
 	if (!head || index >= length || index < 0) return nullptr;
 
 	const bool closerToHead = index <= (length - 1)/ 2;
-	const DLLNode* currentNode = closerToHead ? head : tail;
+	DLLNode* currentNode = closerToHead ? head : tail;
 	const int finalIndex = closerToHead ? index : length - 1 - index;
 
 	for (int i = 0; i < finalIndex; ++i) {
@@ -52,6 +52,41 @@ const DLLNode* DoublyLinkedList::Get(const int index)
 	}
 
 	return currentNode;
+}
+
+const bool DoublyLinkedList::Set(const int index, const int value)
+{
+	DLLNode* node = Get(index);
+	if (node) {
+		node->value = value;
+		return true;
+	}
+	return false;
+}
+
+const bool DoublyLinkedList::Insert(const int index, const int value)
+{
+	if (index < 0 || index > length) return false;
+
+	if (index == 0) {
+		Prepend(value);
+		return true;
+	}
+	else if (index == length) {
+		Append(value);
+		return true;
+	}
+
+	DLLNode* newNode = new DLLNode(value);
+	DLLNode* before = Get(index - 1);
+	DLLNode* after = before->next;
+
+	before->next = newNode;
+	newNode->prev = before;
+	newNode->next = after;
+	after->prev = newNode;
+	++length;
+	return true;
 }
 
 void DoublyLinkedList::Append(const int value)
