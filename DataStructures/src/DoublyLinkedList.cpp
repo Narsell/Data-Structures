@@ -89,6 +89,21 @@ const bool DoublyLinkedList::Insert(const int index, const int value)
 	return true;
 }
 
+void DoublyLinkedList::Prepend(const int value)
+{
+	DLLNode* newNode = new DLLNode(value);
+	if (!head) {
+		head = newNode;
+		tail = newNode;
+	}
+	else {
+		head->prev = newNode;
+		newNode->next = head;
+		head = newNode;
+	}
+	++length;
+}
+
 void DoublyLinkedList::Append(const int value)
 {
 	DLLNode* newNode = new DLLNode(value);
@@ -105,19 +120,20 @@ void DoublyLinkedList::Append(const int value)
 	++length;
 }
 
-void DoublyLinkedList::Prepend(const int value)
+void DoublyLinkedList::DeleteNode(const int index)
 {
-	DLLNode* newNode = new DLLNode(value);
-	if (!head) {
-		head = newNode;
-		tail = newNode;
+	if (index < 0 || index >= length) return;
+	if (index == 0) return DeleteFirst();
+	else if (index == length - 1) return DeleteLast();
+
+	DLLNode* node = Get(index);
+	if (node) {
+		node->prev->next = node->next;
+		node->next->prev = node->prev;
+		delete node;
+		--length;
 	}
-	else {
-		head->prev = newNode;
-		newNode->next = head;
-		head = newNode;
-	}
-	++length;
+	
 }
 
 void DoublyLinkedList::DeleteLast()
@@ -150,6 +166,6 @@ void DoublyLinkedList::DeleteFirst()
 		head = head->next;
 		head->prev = nullptr;
 	}
-	--length;
 	delete headToDelete;
+	--length;
 }

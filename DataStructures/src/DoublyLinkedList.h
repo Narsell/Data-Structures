@@ -37,10 +37,12 @@ public:
     const bool Set(const int index, const int value);
     // O(n) time complexity. Inserts a new node at the given index.
     const bool Insert(const int index, const int value);
-    // O(1) time complexity. Adds a node to the end.
-    void Append(const int value);
     // O(1) time complexity. Adds a new node to the begining.
     void Prepend(const int value);
+    // O(1) time complexity. Adds a node to the end.
+    void Append(const int value);
+    // O(n) time complexity. Deletes a node at a given index.
+    void DeleteNode(const int index);
     // O(1) time complexity. Deletes the last node.
     void DeleteLast();
     // O(1) time complexity. Deletes the first node.
