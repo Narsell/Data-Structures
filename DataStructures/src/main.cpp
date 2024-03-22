@@ -46,7 +46,7 @@ int main() {
     doublyLL.Append(6);
     doublyLL.Append(7);
 
-    doublyLL.DeleteNode(3);
+    doublyLL.Reverse();
 
     doublyLL.PrintList();
 

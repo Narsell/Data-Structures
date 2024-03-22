@@ -48,6 +48,14 @@ public:
     // O(1) time complexity. Deletes the first node.
     void DeleteFirst();
 
+    /* LEETCODE EXERCISES */
+
+    // O(1) time complexity. Swaps the first and last elements.
+    void SwapFirstLast();
+    // O(n) time complexity. Reverses the order on the list.
+    void Reverse();
+
+
 private:
 
     DLLNode* head;

@@ -169,3 +169,32 @@ void DoublyLinkedList::DeleteFirst()
 	delete headToDelete;
 	--length;
 }
+
+void DoublyLinkedList::SwapFirstLast()
+{
+	if (length < 2) return;
+
+	int headValue = head->value;
+	head->value = tail->value;
+	tail->value = headValue;
+}
+
+void DoublyLinkedList::Reverse()
+{
+	if (length < 2) return;
+
+	DLLNode* current = head;
+
+	while (current)
+	{
+		DLLNode* next = current->next;
+		current->next = current->prev;
+		current->prev = next;
+
+		current = current->prev;
+	}
+
+	DLLNode* tempHead = head;
+	head = tail;
+	tail = tempHead;
+}
