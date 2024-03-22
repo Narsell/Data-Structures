@@ -54,6 +54,10 @@ public:
     void SwapFirstLast();
     // O(n) time complexity. Reverses the order on the list.
     void Reverse();
+    // O(n) time complexity. Returns true if DLL is palindrome, i.e., its elements read the same forwards and backwards.
+    const bool IsPalindrome() const;
+    // O(n) time complexity. Swaps every two adjacent nodes in the list.
+    void SwapPairs();
 
 
 private:

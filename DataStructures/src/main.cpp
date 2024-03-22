@@ -46,7 +46,8 @@ int main() {
     doublyLL.Append(6);
     doublyLL.Append(7);
 
-    doublyLL.Reverse();
+
+    doublyLL.SwapPairs();
 
     doublyLL.PrintList();
 

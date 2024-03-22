@@ -198,3 +198,60 @@ void DoublyLinkedList::Reverse()
 	head = tail;
 	tail = tempHead;
 }
+
+const bool DoublyLinkedList::IsPalindrome() const
+{
+	if (!head) return false;
+
+	const int middleIndex = length / 2;
+
+	const DLLNode* current = head;
+	const DLLNode* opposite = tail;
+
+	for (int i = 0; i <= middleIndex; ++i) {
+
+		if (current->value != opposite->value) {
+			return false;
+		}
+
+		opposite = opposite->prev;
+		current = current->next;
+	}
+
+	return true;
+}
+
+void DoublyLinkedList::SwapPairs()
+{
+	if (length < 2) return;
+
+	DLLNode* current = head;
+	DLLNode* nextPairNode = nullptr;
+	DLLNode* prevPairNode = nullptr;
+
+	while (current && current->next) {
+
+		nextPairNode = current->next->next;
+		prevPairNode = current->prev;
+
+		current->next->prev = current->prev;
+		current->next->next = current;
+
+		current->prev = current->next;
+		current->next = nextPairNode;
+
+
+		if (prevPairNode) {
+			prevPairNode->next = current->prev;
+		}
+
+		if (nextPairNode) {
+			nextPairNode->prev = current;
+		}
+
+		current = nextPairNode;
+	}
+
+	head = head->prev;
+	tail = current == nullptr ? tail->next : tail;
+}
