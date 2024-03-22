@@ -2,6 +2,7 @@
 #include "LinkedList.h"
 #include "DoublyLinkedList.h"
 #include "Stack.h"
+#include "Queue.h"
 
 int main() {
 
@@ -51,18 +52,29 @@ int main() {
 
     doublyLL.Print();
 
-    std::cout << "\n\n================= STACK ================= \n";
+    std::cout << "\n\n================= STACK ======================== \n";
     std::cout << "\n================================================ \n\n";
 
     Stack stack(1);
-    stack.Push(2);
-    stack.Push(3);
 
-    std::cout << stack.Pop() << "\n";
-    std::cout << stack.Pop() << "\n";
-    std::cout << stack.Pop() << "\n";
     std::cout << stack.Pop() << "\n";
 
     stack.Print();
+
+    std::cout << "\n\n================= QUEUE ======================== \n";
+    std::cout << "\n================================================ \n\n";
+
+    Queue queue(0);
+    queue.Dequeue();
+    queue.Print();
+    queue.Enqueue(5);
+    queue.Enqueue(2);
+    queue.Enqueue(1);
+    queue.Print();
+    queue.Dequeue();
+    queue.Dequeue();
+    queue.Dequeue();
+    queue.Print();
+
 
 }

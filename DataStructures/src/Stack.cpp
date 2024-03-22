@@ -4,10 +4,10 @@
 #include "Stack.h"
 
 Stack::Stack(const int value)
+    :height(1)
 {
 	SNode* newNode = new SNode(value);
 	top = newNode;
-	height = 1;
 }
 
 Stack::~Stack()
@@ -47,7 +47,7 @@ void Stack::Push(int value)
 
 const int Stack::Pop()
 {
-    if (!top) return INT_MAX;
+    if (!top) return INT_MIN;
 
     SNode* node = top;
     const int nodeValue = node->value;

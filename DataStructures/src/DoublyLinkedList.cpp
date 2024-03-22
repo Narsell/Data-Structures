@@ -4,11 +4,11 @@
 #include "DoublyLinkedList.h"
 
 DoublyLinkedList::DoublyLinkedList(const int value)
+	:length(1)
 {
 	DLLNode* newNode = new DLLNode(value);
 	head = newNode;
 	tail = newNode;
-	length = 1;
 }
 
 DoublyLinkedList::~DoublyLinkedList()
