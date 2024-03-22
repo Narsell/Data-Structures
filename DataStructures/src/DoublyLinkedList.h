@@ -27,7 +27,7 @@ public:
     const DLLNode* GetHead() const { return head; };
     const DLLNode* GetTail() const { return tail; };
     const int GetLength() const { return length; };
-    void PrintList() const;
+    void Print() const;
 
     /* BASIC OPERATIONS */
 

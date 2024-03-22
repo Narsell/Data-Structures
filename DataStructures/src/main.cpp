@@ -1,6 +1,7 @@
 #include <iostream>
 #include "LinkedList.h"
 #include "DoublyLinkedList.h"
+#include "Stack.h"
 
 int main() {
 
@@ -12,7 +13,7 @@ int main() {
     linkedList.Append(3);
     linkedList.Append(4);
     linkedList.Append(5);
-    linkedList.PrintList();
+    linkedList.Print();
 
     std::cout << "\tMiddle node: " << linkedList.GetMiddleNode()->value << "\n";
     std::cout << "\t2nd element from end: " << linkedList.FindKthFromEnd(2)->value << "\n";
@@ -21,19 +22,19 @@ int main() {
     std::cout << "\n=========\nREVERSED\n=========\n";
 
     linkedList.Reverse();
-    linkedList.PrintList();
+    linkedList.Print();
 
     constexpr int x = 3;
     std::cout << "\n====================\nPARTITIONED AROUND " << x << " \n====================\n";
     linkedList.PartitionList(x);
-    linkedList.PrintList();
+    linkedList.Print();
 
     std::cout << "\n================\nREMOVED DUPLICATES\n================\n";
     linkedList.RemoveDuplicatesUsingSet();
-    linkedList.PrintList();
+    linkedList.Print();
 
     linkedList.ReverseBetween(1, 3);
-    linkedList.PrintList();
+    linkedList.Print();
 
     std::cout << "\n\n================= DOUBLY LINKED LIST ================= \n";
     std::cout << "\n====================================================== \n\n";
@@ -46,9 +47,22 @@ int main() {
     doublyLL.Append(6);
     doublyLL.Append(7);
 
-
     doublyLL.SwapPairs();
 
-    doublyLL.PrintList();
+    doublyLL.Print();
+
+    std::cout << "\n\n================= STACK ================= \n";
+    std::cout << "\n================================================ \n\n";
+
+    Stack stack(1);
+    stack.Push(2);
+    stack.Push(3);
+
+    std::cout << stack.Pop() << "\n";
+    std::cout << stack.Pop() << "\n";
+    std::cout << stack.Pop() << "\n";
+    std::cout << stack.Pop() << "\n";
+
+    stack.Print();
 
 }

@@ -384,7 +384,7 @@ void LinkedList::ReverseBetween(int m, int n)
     
 }
 
-void LinkedList::PrintList() const
+void LinkedList::Print() const
 {
     const std::string headValue = head ? std::to_string(head->value) : "nullptr";
     const std::string tailValue = tail ? std::to_string(tail->value) : "nullptr";

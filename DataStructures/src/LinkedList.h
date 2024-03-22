@@ -1,3 +1,4 @@
+#pragma once
 
 class LLNode {
 
@@ -26,7 +27,7 @@ public:
     const LLNode* GetHead() const { return head; };
     const LLNode* GetTail() const { return tail; };
     const int GetLength() const { return length; };
-    void PrintList() const;
+    void Print() const;
 
     /* BASIC OPERATIONS */
 

@@ -21,7 +21,7 @@ DoublyLinkedList::~DoublyLinkedList()
 	}
 }
 
-void DoublyLinkedList::PrintList() const
+void DoublyLinkedList::Print() const
 {
 	const std::string headValue = head ? std::to_string(head->value) : "nullptr";
 	const std::string tailValue = tail ? std::to_string(tail->value) : "nullptr";
