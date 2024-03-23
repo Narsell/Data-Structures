@@ -23,9 +23,9 @@ public:
 
     void Print() const;
 
-    // O(1) time complexity. Adds a node to the queue's end.
+    // O(1) time complexity. Adds a node to the end of the queue. (Equivalent to Append on Linked Lists)
     void Enqueue(const int value);
-    // O(1) time complexity. Pops the first element in the queue.
+    // O(1) time complexity. Removes the node at the begining of the queue. (Equivalent to DeleteFirst on Linked Lists) 
     void Dequeue();
 
 private:
