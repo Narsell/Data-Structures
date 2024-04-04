@@ -86,7 +86,8 @@ int main() {
     bst.Insert(27);
 
 
-    std::cout << bst.GetRoot()->left->right->value << "\n";
+    std::cout << bst.Contains(82) << "\n";
+    //std::cout << bst.GetRoot()->left->right->value << "\n";
 
 
 }

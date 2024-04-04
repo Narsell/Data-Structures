@@ -39,3 +39,24 @@ const bool BinarySearchTree::Insert(const int value)
 		}
 	}
 }
+
+const bool BinarySearchTree::Contains(const int value) const
+{
+	BSTNode* current = root;
+
+	while (current) {
+
+		if (current->value == value) {
+			return true;
+		}
+		else if (value < current->value) {
+			current = current->left;
+		}
+		else {
+			current = current->right;
+		}
+	
+	}
+
+	return false;
+}
