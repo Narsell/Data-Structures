@@ -3,6 +3,7 @@
 #include "DoublyLinkedList.h"
 #include "Stack.h"
 #include "Queue.h"
+#include "BinarySearchTree.h"
 
 int main() {
 
@@ -66,15 +67,26 @@ int main() {
 
     Queue queue(0);
     queue.Dequeue();
-    queue.Print();
     queue.Enqueue(5);
-    queue.Enqueue(2);
-    queue.Enqueue(1);
     queue.Print();
-    queue.Dequeue();
-    queue.Dequeue();
-    queue.Dequeue();
-    queue.Print();
+
+    std::cout << "\n\n================= BINARY SEARCH TREE ======================== \n";
+    std::cout << "\n============================================================ \n\n";
+
+    BinarySearchTree bst;
+
+    bst.Insert(47);
+    bst.Insert(21);
+    bst.Insert(76);
+    bst.Insert(18);
+    bst.Insert(52);
+    bst.Insert(82);
+
+
+    bst.Insert(27);
+
+
+    std::cout << bst.GetRoot()->left->right->value << "\n";
 
 
 }
