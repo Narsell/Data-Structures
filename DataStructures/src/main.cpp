@@ -4,6 +4,7 @@
 #include "Stack.h"
 #include "Queue.h"
 #include "BinarySearchTree.h"
+#include "HashTable.h"
 
 int main() {
 
@@ -81,13 +82,15 @@ int main() {
     bst.Insert(18);
     bst.Insert(52);
     bst.Insert(82);
-
-
     bst.Insert(27);
 
+    std::cout << bst.Contains(21) << "\n";
 
-    std::cout << bst.Contains(82) << "\n";
-    //std::cout << bst.GetRoot()->left->right->value << "\n";
+    std::cout << "\n\n================= HASH TABLE ======================== \n";
+    std::cout << "\n==================================================== \n\n";
+
+    HashTable hashTable;
+    hashTable.Print();
 
 
 }
