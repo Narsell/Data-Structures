@@ -21,6 +21,9 @@ public:
 	HashTable();
 	void Print() const;
 
+	const int Get(const std::string& key) const;
+	void Set(const std::string& key, const int value);
+
 private:
 
 	const int Hash(const std::string& key) const;

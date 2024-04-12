@@ -90,7 +90,15 @@ int main() {
     std::cout << "\n==================================================== \n\n";
 
     HashTable hashTable;
+    hashTable.Set("keyboard", 2);
+    hashTable.Set("mouse", 1);
+    hashTable.Set("monitors", 3);
+    hashTable.Set("speakers", 5);
+    hashTable.Set("mouse", 5);
+    hashTable.Set("monitors", 13);
     hashTable.Print();
+
+    std::cout << "\n\n" << hashTable.Get("keyboard") << std::endl;
 
 
 }
