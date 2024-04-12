@@ -35,9 +35,16 @@ public:
 
 	/**
 	 * O(n) time complexity.
-	 * Retrieves all keys and returns them in a std::vector.
+	 * Retrieves all keys and returns them in an std::vector.
 	 */
 	std::vector<std::string> Keys() const;
+
+
+	/**
+	 * O(n) time complexity. Using a Hash Table, in this case, an std::unordered_map
+	 * Common interview question: Check if two vectors/arrays have items in common.
+	 */
+	static const bool ItemsInCommon(std::vector<int>& vector1, std::vector<int>& vector2);
 
 private:
 

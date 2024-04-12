@@ -22,17 +22,17 @@ int main() {
     std::cout << "\t2nd element from end: " << linkedList.FindKthFromEnd(2)->value << "\n";
     std::cout << "\tHas loop?: " << linkedList.HasLoop() << "\n";
 
-    std::cout << "\n=========\nREVERSED\n=========\n";
+    std::cout << "\n----------\nREVERSED\n----------\n";
 
     linkedList.Reverse();
     linkedList.Print();
 
     constexpr int x = 3;
-    std::cout << "\n====================\nPARTITIONED AROUND " << x << " \n====================\n";
+    std::cout << "\n--------------------\nPARTITIONED AROUND " << x << " \n--------------------\n";
     linkedList.PartitionList(x);
     linkedList.Print();
 
-    std::cout << "\n================\nREMOVED DUPLICATES\n================\n";
+    std::cout << "\n------------------\nREMOVED DUPLICATES\n------------------\n";
     linkedList.RemoveDuplicatesUsingSet();
     linkedList.Print();
 
@@ -107,6 +107,36 @@ int main() {
     const std::string key = "monitors";
 
     std::cout << "\n\n" << key << ": " << hashTable.Get(key) << std::endl;
+
+    std::cout << "\n------------------\nITEMS IN COMMON\n------------------\n";
+
+    std::vector<int> vector1;
+    vector1.push_back(3);
+    vector1.push_back(2);
+    vector1.push_back(1);
+
+    std::cout << "Vector1: ";
+
+    for (int value: vector1) {
+        std::cout << value << ", ";
+    }
+
+    std::cout << "\n";
+
+    std::vector<int> vector2;
+    vector2.push_back(4);
+    vector2.push_back(7);
+    vector2.push_back(7);
+
+    std::cout << "Vector2: ";
+
+    for (int value : vector2) {
+        std::cout << value << ", ";
+    }
+
+    std::cout << "\n";
+    std::cout << std::boolalpha;
+    std::cout << "\nItems in common: " << HashTable::ItemsInCommon(vector1, vector2) << "\n\n";
 
 
 }

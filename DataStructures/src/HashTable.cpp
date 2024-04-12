@@ -1,4 +1,5 @@
 #include <iostream>
+#include <unordered_map>
 
 #include "HashTable.h"
 
@@ -80,6 +81,21 @@ std::vector<std::string> HashTable::Keys() const
 	}
 
 	return keys;
+}
+
+const bool HashTable::ItemsInCommon(std::vector<int>& vector1, std::vector<int>& vector2)
+{
+	std::unordered_map<int, bool> map;
+	
+	for (int value : vector1) {
+		map.insert({ value, true });
+	}
+
+	for (int value : vector2) {
+		if (map[value]) return true;
+	}
+
+	return false;
 }
 
 const int HashTable::Hash(const std::string& key) const
