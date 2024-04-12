@@ -98,7 +98,15 @@ int main() {
     hashTable.Set("monitors", 13);
     hashTable.Print();
 
-    std::cout << "\n\n" << hashTable.Get("keyboard") << std::endl;
+    const std::vector<std::string> keys = hashTable.Keys();
+    std::cout << "KEYS:\n  ";
+    for (auto& key : keys) {
+        std::cout << key << ", ";
+    }
+
+    const std::string key = "monitors";
+
+    std::cout << "\n\n" << key << ": " << hashTable.Get(key) << std::endl;
 
 
 }

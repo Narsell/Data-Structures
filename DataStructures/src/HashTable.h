@@ -1,5 +1,5 @@
 #pragma once
-
+#include <vector>
 #include <sstream>
 
 class HTNode {
@@ -23,6 +23,7 @@ public:
 
 	const int Get(const std::string& key) const;
 	void Set(const std::string& key, const int value);
+	std::vector<std::string> Keys() const;
 
 private:
 
