@@ -5,6 +5,7 @@
 #include "Queue.h"
 #include "BinarySearchTree.h"
 #include "HashTable.h"
+#include "Graph.h"
 
 int main() {
 
@@ -16,6 +17,7 @@ int main() {
     linkedList.Append(3);
     linkedList.Append(4);
     linkedList.Append(5);
+    linkedList.Get(8);
     linkedList.Print();
 
     std::cout << "\tMiddle node: " << linkedList.GetMiddleNode()->value << "\n";
@@ -115,7 +117,7 @@ int main() {
     std::cout << "Vector1: ";
 
     for (int value: vector1) {
-        std::cout << value << ", ";
+        std::cout << value << " ";
     }
 
     std::cout << "\n";
@@ -125,7 +127,7 @@ int main() {
     std::cout << "Vector2: ";
 
     for (int value : vector2) {
-        std::cout << value << ", ";
+        std::cout << value << " ";
     }
 
     std::cout << "\n";
@@ -141,7 +143,7 @@ int main() {
     std::cout << "Vector with duplicates: ";
 
     for (int value : vectorWithDups) {
-        std::cout << value << ", ";
+        std::cout << value << " ";
     }
 
     std::cout << "\n";
@@ -149,9 +151,27 @@ int main() {
     std::cout << "Duplicates found: ";
 
     for (int value : duplicates) {
-        std::cout << value << ", ";
+        std::cout << value << " ";
     }
 
     std::cout << "\n";
+
+    std::cout << "\n\n================= GRAPHS ======================== \n";
+    std::cout << "\n================================================= \n\n";
+
+    Graph graph;
+
+    graph.AddVertex("A");
+    graph.AddVertex("B");
+    graph.AddVertex("C");
+    graph.AddVertex("D");
+
+    graph.AddEdge("A", "B");
+    graph.AddEdge("A", "C");
+    graph.AddEdge("D", "A");
+    graph.AddEdge("D", "B");
+    graph.AddEdge("D", "C");
+    graph.RemoveVertex("D");
+    graph.Print();
 
 }
