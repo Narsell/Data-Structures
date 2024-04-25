@@ -110,10 +110,7 @@ int main() {
 
     std::cout << "\n------------------\nITEMS IN COMMON\n------------------\n";
 
-    std::vector<int> vector1;
-    vector1.push_back(3);
-    vector1.push_back(2);
-    vector1.push_back(1);
+    std::vector<int> vector1{ 3, 2, 1 };
 
     std::cout << "Vector1: ";
 
@@ -123,10 +120,7 @@ int main() {
 
     std::cout << "\n";
 
-    std::vector<int> vector2;
-    vector2.push_back(4);
-    vector2.push_back(7);
-    vector2.push_back(7);
+    std::vector<int> vector2{ 4, 7, 7 };
 
     std::cout << "Vector2: ";
 
@@ -138,5 +132,26 @@ int main() {
     std::cout << std::boolalpha;
     std::cout << "\nItems in common: " << HashTable::ItemsInCommon(vector1, vector2) << "\n\n";
 
+    std::cout << "\n------------------\nFIND DUPLICATES\n------------------\n";
+
+    const std::vector<int> vectorWithDups{ 1, 2, 5, 8, 5, 2, 6, 2, 4, 4, 4 };
+
+    const std::vector<int> duplicates = HashTable::FindDuplicates(vectorWithDups);
+
+    std::cout << "Vector with duplicates: ";
+
+    for (int value : vectorWithDups) {
+        std::cout << value << ", ";
+    }
+
+    std::cout << "\n";
+
+    std::cout << "Duplicates found: ";
+
+    for (int value : duplicates) {
+        std::cout << value << ", ";
+    }
+
+    std::cout << "\n";
 
 }

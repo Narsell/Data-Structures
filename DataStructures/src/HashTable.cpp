@@ -83,7 +83,7 @@ std::vector<std::string> HashTable::Keys() const
 	return keys;
 }
 
-const bool HashTable::ItemsInCommon(std::vector<int>& vector1, std::vector<int>& vector2)
+const bool HashTable::ItemsInCommon(const std::vector<int>& vector1, const std::vector<int>& vector2)
 {
 	std::unordered_map<int, bool> map;
 	
@@ -96,6 +96,24 @@ const bool HashTable::ItemsInCommon(std::vector<int>& vector1, std::vector<int>&
 	}
 
 	return false;
+}
+
+const std::vector<int> HashTable::FindDuplicates(const std::vector<int>& numbers)
+{
+	std::unordered_map<int, int> numberCount;
+	std::vector<int> duplicates;
+
+	for (int number : numbers) {
+		numberCount[number] += 1;
+	}
+
+	for (auto& count : numberCount) {
+		if (count.second > 1) {
+			duplicates.push_back(count.first);
+		}
+	}
+
+	return duplicates;
 }
 
 const int HashTable::Hash(const std::string& key) const

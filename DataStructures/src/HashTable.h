@@ -44,7 +44,9 @@ public:
 	 * O(n) time complexity. Using a Hash Table, in this case, an std::unordered_map
 	 * Common interview question: Check if two vectors/arrays have items in common.
 	 */
-	static const bool ItemsInCommon(std::vector<int>& vector1, std::vector<int>& vector2);
+	static const bool ItemsInCommon(const std::vector<int>& vector1, const std::vector<int>& vector2);
+
+	static const std::vector<int> FindDuplicates(const std::vector<int>& numbers);
 
 private:
 
