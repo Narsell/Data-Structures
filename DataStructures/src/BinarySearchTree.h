@@ -24,13 +24,30 @@ public:
 
 	const BSTNode* GetRoot() const { return root; };
 	
-	// Strictly speaking O(n) however most of the time it can be treated as O(log n) time complexity.
+	/**
+	 * O(log n) time complexity most of the time, can be O(n) if treated as a Linked List.
+	 * Inserts a node into the BST.
+	 * Returns true if the node was inserted successfully.
+	 */
 	const bool Insert(const int value);
-	// Strictly speaking O(n) however most of the time it can be treated as O(log n) time complexity.
+	/**
+	 * O(log n) time complexity most of the time, can be O(n) if treated as a Linked List.
+	 * Determines whether a value is contained in the BST or not.
+	 * Returns true if the value is contained, false otherwise.
+	 */	
 	const bool Contains(const int value) const;
+
+	/**
+	 * O(log n) time complexity most of the time, can be O(n) if treated as a Linked List.
+	 * Recursively determines whether a value is contained in the BST or not.
+	 * Returns true if the value is contained, false otherwise.
+	 */
+	const bool rContains(const int value);
+
 
 private:
 
 	BSTNode* root;
 
+	const bool rContains(BSTNode* currentNode, const int value);
 };

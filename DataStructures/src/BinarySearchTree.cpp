@@ -60,3 +60,23 @@ const bool BinarySearchTree::Contains(const int value) const
 
 	return false;
 }
+
+const bool BinarySearchTree::rContains(const int value)
+{
+	return rContains(root, value);
+}
+
+const bool BinarySearchTree::rContains(BSTNode* currentNode, const int value)
+{
+	if (currentNode == nullptr) return false;
+
+	if (value == currentNode->value) return true;
+
+	if (value < currentNode->value) {
+		return rContains(currentNode->left, value);
+	}
+	else {
+		return rContains(currentNode->right, value);
+	}
+
+}
