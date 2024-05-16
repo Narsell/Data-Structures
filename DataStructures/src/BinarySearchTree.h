@@ -44,10 +44,18 @@ public:
 	 */
 	const bool rContains(const int value);
 
+	/**
+	 * O(log n) time complexity most of the time, can be O(n) if treated as a Linked List.
+	 * Recursively inserts a node into the BST.
+	 * Returns true if the node was inserted successfully.
+	 */
+	const bool rInsert(const int value);
+
 
 private:
 
 	BSTNode* root;
 
 	const bool rContains(BSTNode* currentNode, const int value);
+	const bool rInsert(BSTNode* currentNode, const int value);
 };

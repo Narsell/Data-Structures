@@ -92,16 +92,13 @@ int main() {
 
         BinarySearchTree bst;
 
-        bst.Insert(47);
-        bst.Insert(21);
-        bst.Insert(76);
-        bst.Insert(18);
-        bst.Insert(52);
-        bst.Insert(82);
-        bst.Insert(27);
+        bst.rInsert(2);
+        bst.rInsert(1);
+        bst.rInsert(3);
+  
 
-        std::cout << bst.Contains(28) << "\n";
-        std::cout << bst.rContains(28) << "\n";
+        std::cout << bst.Contains(1) << "\n";
+        std::cout << bst.rContains(3) << "\n";
     }
 
     // HASH TABLE

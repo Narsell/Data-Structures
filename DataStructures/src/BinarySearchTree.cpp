@@ -66,6 +66,11 @@ const bool BinarySearchTree::rContains(const int value)
 	return rContains(root, value);
 }
 
+const bool BinarySearchTree::rInsert(const int value)
+{
+	return rInsert(root, value);
+}
+
 const bool BinarySearchTree::rContains(BSTNode* currentNode, const int value)
 {
 	if (currentNode == nullptr) return false;
@@ -79,4 +84,29 @@ const bool BinarySearchTree::rContains(BSTNode* currentNode, const int value)
 		return rContains(currentNode->right, value);
 	}
 
+}
+
+const bool BinarySearchTree::rInsert(BSTNode* currentNode, const int value)
+{
+
+	if (currentNode == root && root == nullptr) {
+		root = new BSTNode(value);
+		return true;
+	} else if (currentNode->value == value) 
+		return false;
+
+	if (value < currentNode->value) {
+		if (currentNode->left == nullptr) {
+			currentNode->left = new BSTNode(value);
+			return true;
+		}
+		return rInsert(currentNode->left, value);
+	}
+	else {
+		if (currentNode->right == nullptr) {
+			currentNode->right = new BSTNode(value);
+			return true;
+		}
+		return rInsert(currentNode->right, value);
+	}
 }
