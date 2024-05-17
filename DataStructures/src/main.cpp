@@ -6,6 +6,7 @@
 #include "BinarySearchTree.h"
 #include "HashTable.h"
 #include "Graph.h"
+#include "SortingAlgorithms.h"
 
 int main() {
 
@@ -172,7 +173,7 @@ int main() {
         std::cout << "\n";
     }
 
-    //GRAHPS
+    // GRAHPS
     {
         std::cout << "\n\n================= GRAPHS ======================== \n";
         std::cout << "\n================================================= \n\n";
@@ -193,4 +194,57 @@ int main() {
         graph.Print();
     }
 
+    // SORTING ALGORITHMS
+    {
+        std::cout << "\n\n================= SORTING ALGORITHMS ======================= \n";
+        std::cout << "\n============================================================ \n\n";
+
+        // BUBBLE SORT
+        {
+            std::cout << "\n\n================= BUBBLE SORT ======================= \n";
+            std::cout << "\n===================================================== \n\n";
+            int array[6] = { 6, 3, 4, 2, 1, 5 };
+            std::cout << "Array before sorting:\n";
+            for (int item : array) {
+                std::cout << item << " ";
+            }
+            BubbleSort(array, 6);
+            std::cout << "\nArray after sorting:\n";
+            for (int item : array) {
+                std::cout << item << " ";
+            }
+        }
+
+        // SELECTION SORT
+        {
+            std::cout << "\n\n================= SELECTION SORT ==================== \n";
+            std::cout << "\n===================================================== \n\n";
+            int array[6] = { 6, 3, 4, 2, 1, 5 };
+            std::cout << "Array before sorting:\n";
+            for (int item : array) {
+                std::cout << item << " ";
+            }
+            SelectionSort(array, 6);
+            std::cout << "\nArray after sorting:\n";
+            for (int item : array) {
+                std::cout << item << " ";
+            }
+        }
+
+        // INSERTION SORT
+        {
+            std::cout << "\n\n================= INSERTION SORT ==================== \n";
+            std::cout << "\n===================================================== \n\n";
+            int array[6] = { 6, 3, 4, 2, 1, 5 };
+            std::cout << "Array before sorting:\n";
+            for (int item : array) {
+                std::cout << item << " ";
+            }
+            InsertionSort(array, 6);
+            std::cout << "\nArray after sorting:\n";
+            for (int item : array) {
+                std::cout << item << " ";
+            }
+        }
+    }
 }
