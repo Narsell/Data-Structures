@@ -52,9 +52,32 @@ void MergeSort(int array[], const int leftIndex, const int rightIndex)
 
 }
 
+void QuickSort(int array[], const int leftIndex, const int rightIndex)
+{
+	if (leftIndex >= rightIndex) return;
+
+	int pivotIndex = Pivot(array, leftIndex, rightIndex);
+	QuickSort(array, leftIndex, pivotIndex - 1);
+	QuickSort(array, pivotIndex + 1, rightIndex);
+}
+
+int Pivot(int array[], const int pivotIndex, const int endIndex)
+{
+	int swapIndex = pivotIndex;
+
+	for (int i = pivotIndex + 1; i <= endIndex; ++i) {
+		if (array[i] < array[pivotIndex]) {
+			++swapIndex;
+			Swap(array, swapIndex, i);
+		}
+	}
+	Swap(array, pivotIndex, swapIndex);
+	return swapIndex;
+}
+
 void Merge(int array[], const int leftIndex, const int midIndex, const int rightIndex)
 {
-	// Creates two subarrays based on left, mid and right indices.
+	// Creates two subarrays based on left, mid and right indexes.
 	const int leftArraySize = midIndex - leftIndex + 1;
 	const int rightArraySize = rightIndex - midIndex;
 
@@ -101,5 +124,13 @@ void Merge(int array[], const int leftIndex, const int midIndex, const int right
 
 	delete[] leftArray;
 	delete[] rightArray;
+}
+
+void Swap(int array[], const int firstIndex, const int secondIndex)
+{
+	const int temp = array[firstIndex];
+	array[firstIndex] = array[secondIndex];
+	array[secondIndex] = temp;
+
 }
 
