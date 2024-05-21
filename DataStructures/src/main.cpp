@@ -7,6 +7,7 @@
 #include "HashTable.h"
 #include "Graph.h"
 #include "SortingAlgorithms.h"
+#include "CommonAlgorithms.h"
 
 int main() {
 
@@ -278,5 +279,16 @@ int main() {
                 std::cout << item << " ";
             }
         }
+    }
+
+    // FIBONACCI ALGORITHMS
+    {
+        std::cout << "\n\n================= FIBONACCI ====================== \n";
+        std::cout << "\n================================================== \n\n";
+        const int n = 41;
+        std::vector<int> memoization(n + 1, -1);
+
+        int counter = 0;
+        std::cout << "Recursive (memoization) fibonacci of " << n << ": " << rFibonacci(n, memoization, counter) << "\n\tIt took " << counter << " function calls!";
     }
 }

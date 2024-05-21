@@ -11,8 +11,7 @@ void BubbleSort(int array[], const int size);
 void SelectionSort(int array[], const int size);
 
 /**
- * O(n^2) time complexity.
- * For sorted or almost sorted data, it can behave like O(n).
+ * O(n^2) time complexity for unordered data but for sorted or almost sorted data, it can behave like O(n).
  */
 void InsertionSort(int array[], const int size);
 
@@ -22,7 +21,9 @@ void InsertionSort(int array[], const int size);
  */
 void MergeSort(int array[], const int leftIndex, const int rightIndex);
 
-
+/**
+ * O(n log n) time complexity for unordered data (avg or best case) but for sorted data (worst case) it's O(n^2)
+ */
 void QuickSort(int array[], const int leftIndex, const int rightIndex);
 
 
