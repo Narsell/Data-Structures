@@ -246,5 +246,21 @@ int main() {
                 std::cout << item << " ";
             }
         }
+
+        // MERGE SORT
+        {
+            std::cout << "\n\n================= MERGE SORT ==================== \n";
+            std::cout << "\n================================================== \n\n";
+            int array[8] = { 1, 3, 7, 8, 2, 4, 5, 6 };
+            std::cout << "Array before sorting:\n";
+            for (int item : array) {
+                std::cout << item << " ";
+            }
+            MergeSort(array, 0, 7);
+            std::cout << "\nArray after sorting:\n";
+            for (int item : array) {
+                std::cout << item << " ";
+            }
+        }
     }
 }
