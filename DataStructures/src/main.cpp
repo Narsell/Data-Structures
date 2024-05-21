@@ -283,12 +283,18 @@ int main() {
 
     // FIBONACCI ALGORITHMS
     {
-        std::cout << "\n\n================= FIBONACCI ====================== \n";
-        std::cout << "\n================================================== \n\n";
-        const int n = 41;
-        std::vector<int> memoization(n + 1, -1);
+        std::cout << "\n\n================ RECURSIVE FIBONACCI ================ \n";
+        std::cout << "\n================== WITH MEMOIZATION ================= \n\n";
+        const int n = 100;
+        std::vector<uint64_t> memoization(n + 1, -1);
 
         int counter = 0;
-        std::cout << "Recursive (memoization) fibonacci of " << n << ": " << rFibonacci(n, memoization, counter) << "\n\tIt took " << counter << " function calls!";
+        std::cout << "Fibonacci of n " << n << " is: " << rFibonacci(n, memoization, counter) << "\n\tIt took " << counter << " function calls!\n";
+
+        std::cout << "\n\n=============== ITERATIVE FIBONACCI =============== \n";
+        std::cout << "\n=================================================== \n\n";
+
+        counter = 0;
+        std::cout << "Fibonacci of n " << n << " is: " << iFibonacci(n, counter) << "\n\tIt took " << counter << " function calls!\n";
     }
 }
